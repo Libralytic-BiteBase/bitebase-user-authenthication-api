@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.routes import auth
-from app.core.database import Base, engine
+from app.core.database import Base, engine, get_db
 
 try:
     # Create database tables

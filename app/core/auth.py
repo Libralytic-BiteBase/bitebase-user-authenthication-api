@@ -12,7 +12,9 @@ def authenticate_user(username: str, password: str) -> Optional[Dict]:
             data={"username": username, "password": password}
         )
         if response.status_code == 200:
-            return response.json()
+            data = response.json()
+            if data:
+                return data
         return None
     except Exception as e:
         print(f"Authentication error: {str(e)}")
@@ -31,7 +33,9 @@ def get_facebook_user(access_token: str) -> Optional[Dict]:
             }
         )
         if response.status_code == 200:
-            return response.json()
+            data = response.json()
+            if data:
+                return data
         return None
     except Exception as e:
         print(f"Facebook API error: {str(e)}")
@@ -47,7 +51,9 @@ def get_google_user(access_token: str) -> Optional[Dict]:
             headers={'Authorization': f'Bearer {access_token}'}
         )
         if response.status_code == 200:
-            return response.json()
+            data = response.json()
+            if data:
+                return data
         return None
     except Exception as e:
         print(f"Google API error: {str(e)}")

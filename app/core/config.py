@@ -1,5 +1,9 @@
 from pydantic_settings import BaseSettings
 from typing import Optional
+import warnings
+
+# Suppress the deprecation warning for class-based Config
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Auth API"
