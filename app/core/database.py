@@ -4,7 +4,9 @@ from sqlalchemy.orm import sessionmaker
 import redis
 from app.core.config import settings
 
-engine = create_engine(settings.DATABASE_URL)
+DATABASE_URL = f"postgresql://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}?sslmode=require"
+
+engine = create_engine(DATABASE_URL, connect_args={"sslmode": "require"})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
